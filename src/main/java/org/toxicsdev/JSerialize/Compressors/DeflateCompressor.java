@@ -10,6 +10,7 @@ import java.io.IOException;
 
 
 public class DeflateCompressor implements Compressor {
+    public DeflateCompressor() {}
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);

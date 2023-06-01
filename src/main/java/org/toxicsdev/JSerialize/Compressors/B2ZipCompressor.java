@@ -9,6 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class B2ZipCompressor implements Compressor {
+    public B2ZipCompressor() {}
+
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);

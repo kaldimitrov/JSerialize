@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class LZ4Compressor implements Compressor {
+    public LZ4Compressor() {}
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);
