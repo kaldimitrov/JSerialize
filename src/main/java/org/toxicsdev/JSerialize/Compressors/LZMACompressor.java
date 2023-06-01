@@ -2,12 +2,11 @@ package org.toxicsdev.JSerialize.Compressors;
 
 import org.apache.commons.compress.compressors.lzma.LZMACompressorInputStream;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorOutputStream;
+import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 public class LZMACompressor implements Compressor {
     @Override

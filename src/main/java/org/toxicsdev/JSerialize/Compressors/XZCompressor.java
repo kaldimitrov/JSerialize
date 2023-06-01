@@ -2,12 +2,11 @@ package org.toxicsdev.JSerialize.Compressors;
 
 import org.apache.commons.compress.compressors.xz.XZCompressorInputStream;
 import org.apache.commons.compress.compressors.xz.XZCompressorOutputStream;
+import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 public class XZCompressor implements Compressor {
     @Override

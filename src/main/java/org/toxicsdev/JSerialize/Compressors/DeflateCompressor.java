@@ -2,12 +2,11 @@ package org.toxicsdev.JSerialize.Compressors;
 
 import org.apache.commons.compress.compressors.deflate.DeflateCompressorInputStream;
 import org.apache.commons.compress.compressors.deflate.DeflateCompressorOutputStream;
-
-import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
 import org.toxicsdev.JSerialize.Utils.ByteUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 
 public class DeflateCompressor implements Compressor {

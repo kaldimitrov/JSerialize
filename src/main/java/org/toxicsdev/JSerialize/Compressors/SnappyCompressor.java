@@ -1,13 +1,12 @@
 package org.toxicsdev.JSerialize.Compressors;
 
+import org.toxicsdev.JSerialize.Utils.ByteUtils;
 import org.xerial.snappy.SnappyInputStream;
 import org.xerial.snappy.SnappyOutputStream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 public class SnappyCompressor implements Compressor {
     @Override

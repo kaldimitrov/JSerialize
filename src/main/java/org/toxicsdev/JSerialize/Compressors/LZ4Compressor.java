@@ -2,12 +2,11 @@ package org.toxicsdev.JSerialize.Compressors;
 
 import org.apache.commons.compress.compressors.lz4.BlockLZ4CompressorInputStream;
 import org.apache.commons.compress.compressors.lz4.BlockLZ4CompressorOutputStream;
+import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
-import org.toxicsdev.JSerialize.Utils.ByteUtils;
 
 public class LZ4Compressor implements Compressor {
     @Override

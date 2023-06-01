@@ -1,10 +1,11 @@
 package Compressors;
 
 import TestObjects.Person;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.toxicsdev.JSerialize.Compressors.B2ZipCompressor;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class B2ZipCompressorTest {
 
