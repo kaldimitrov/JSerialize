@@ -1,8 +1,8 @@
-package org.toxicsdev.JSerialize.Deserializers;
+package org.toxicsdev.JSerialize;
 
 import org.toxicsdev.JSerialize.Compressors.Compressor;
 
-public abstract class Deserializer {
+public class Deserializer {
     Compressor compressor = null;
     boolean compact;
 }

@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class XZCompressor implements Compressor {
-    public XZCompressor() {}
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);

@@ -9,7 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class SnappyCompressor implements Compressor {
-    public SnappyCompressor() {}
+    public SnappyCompressor() {
+    }
+
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);

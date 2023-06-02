@@ -2,7 +2,6 @@ package org.toxicsdev.JSerialize.Utils;
 
 import lombok.SneakyThrows;
 import org.toxicsdev.JSerialize.Compressors.Compressor;
-import org.toxicsdev.JSerialize.Compressors.LZ4Compressor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.Map;
 
 public class CompressorUtils {
     private static final String packageName = "org.toxicsdev.JSerialize.Compressors";
+
     @SneakyThrows
     public static Compressor getCompressorByName(String name) {
         List<Class<?>> classes = PackageUtils.getClassesInPackage(packageName);

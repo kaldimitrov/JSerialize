@@ -9,7 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class GZipCompressor implements Compressor {
-    public GZipCompressor() {}
+    public GZipCompressor() {
+    }
+
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);
