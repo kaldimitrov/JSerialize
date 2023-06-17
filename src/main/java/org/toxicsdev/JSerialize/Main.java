@@ -4,6 +4,8 @@ import lombok.SneakyThrows;
 import org.toxicsdev.JSerialize.FileFormats.Json;
 import org.toxicsdev.JSerialize.Utils.CompressorUtils;
 
+import java.util.List;
+
 public class Main {
     @SneakyThrows
     public static void main(String[] args) {
@@ -13,7 +15,12 @@ public class Main {
         Json json = new Json();
         json.serialize(p, "test.json");
         json.serialize(p, "test.json");
+        json.serialize(p, "test.json");
+        json.serialize(p, "test.json");
+        json.serialize(p, "test.json");
 
-        Person p1 = (Person) json.deserialize("test.json");
+
+        List<Object> objects = json.deserialize("test.json");
+        Person p1 = (Person) objects.get(0);
     }
 }
