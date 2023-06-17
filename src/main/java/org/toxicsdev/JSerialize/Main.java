@@ -1,7 +1,8 @@
 package org.toxicsdev.JSerialize;
 
 import lombok.SneakyThrows;
-import org.toxicsdev.JSerialize.FileFormats.Json;
+import org.toxicsdev.JSerialize.FileFormats.JsonFormat;
+import org.toxicsdev.JSerialize.FileFormats.YamlFormat;
 import org.toxicsdev.JSerialize.Utils.CompressorUtils;
 
 import java.util.List;
@@ -12,15 +13,25 @@ public class Main {
         Person p = new Person();
         System.out.println(CompressorUtils.getBestCompressor(p));
 
-        Json json = new Json();
+        JsonFormat json = new JsonFormat();
         json.serialize(p, "test.json");
         json.serialize(p, "test.json");
         json.serialize(p, "test.json");
         json.serialize(p, "test.json");
         json.serialize(p, "test.json");
-
 
         List<Object> objects = json.deserialize("test.json");
         Person p1 = (Person) objects.get(0);
+
+        YamlFormat yaml = new YamlFormat();
+        yaml.serialize(p, "test.yml");
+        yaml.serialize(p, "test.yml");
+        yaml.serialize(p, "test.yml");
+        yaml.serialize(p, "test.yml");
+        yaml.serialize(p, "test.yml");
+
+        List<Object> objects1 = yaml.deserialize("test.yml");
+        System.out.println(objects1);
+
     }
 }
