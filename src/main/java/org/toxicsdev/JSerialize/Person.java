@@ -1,18 +1,29 @@
 package org.toxicsdev.JSerialize;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Person implements Serializable {
     private String name;
     private int age;
     private String gender;
+    String[] friends = new String[3];
+    Map<String, Integer> friendsMap = new HashMap<>();
 
 
     public Person() {
         name = "Kaloyan";
         age = 18;
         gender = "Male";
+        friends[0] = "Test";
+        friends[1] = "Test";
+        friends[2] = "Test";
+
+        friendsMap.put("John", 1);
+        friendsMap.put("Test", 2);
+        friendsMap.put("Test2", 3);
+        friendsMap.put("Test3", 4);
     }
 
     public Person(String name, int age, String gender) {
@@ -43,6 +54,12 @@ public class Person implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void printFriends() {
+        for(int i = 0; i < 3; i++) {
+            System.out.println(friends[i]);
+        }
     }
 
     @Override

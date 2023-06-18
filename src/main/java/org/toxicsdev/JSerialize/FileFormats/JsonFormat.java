@@ -9,7 +9,9 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JsonFormat implements SerializableFormat {
 
@@ -32,6 +34,7 @@ public class JsonFormat implements SerializableFormat {
         Field[] fields = objClass.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
+            Object fieldValue = field.get(object);
             if (field.getType().isArray()) {
                 List<Object> list = new ArrayList<>();
                 int length = Array.getLength(field.get(object));
@@ -39,8 +42,14 @@ public class JsonFormat implements SerializableFormat {
                     list.add(Array.get(field.get(object), i));
                 }
                 jsonObject.put(field.getName(), new JSONArray(list));
+            } else if (fieldValue instanceof List) {
+                JSONArray jsonArray = new JSONArray((List<?>) fieldValue);
+                jsonObject.put(field.getName(), jsonArray);
+            } else if (fieldValue instanceof Map) {
+                JSONObject jsonMap = new JSONObject((Map<?, ?>) fieldValue);
+                jsonObject.put(field.getName(), jsonMap);
             } else {
-                jsonObject.put(field.getName(), field.get(object));
+                jsonObject.put(field.getName(), fieldValue);
             }
         }
 
@@ -69,6 +78,10 @@ public class JsonFormat implements SerializableFormat {
                 Field[] fields = clazz.getDeclaredFields();
                 for (Field field : fields) {
                     field.setAccessible(true);
+                    if (!jsonObject.has(field.getName())) {
+                        field.set(object, null);
+                        continue;
+                    }
                     if (field.getType().isArray()) {
                         JSONArray jsonArrayField = jsonObject.getJSONArray(field.getName());
                         Object array = Array.newInstance(field.getType().getComponentType(), jsonArrayField.length());
@@ -76,6 +89,12 @@ public class JsonFormat implements SerializableFormat {
                             Array.set(array, i, jsonArrayField.get(i));
                         }
                         field.set(object, array);
+                    } else if (List.class.isAssignableFrom(field.getType())) {
+                        List<Object> list = new ArrayList<>(jsonObject.getJSONArray(field.getName()).toList());
+                        field.set(object, list);
+                    } else if (Map.class.isAssignableFrom(field.getType())) {
+                        Map<String, Object> map = new HashMap<>(jsonObject.getJSONObject(field.getName()).toMap());
+                        field.set(object, map);
                     } else {
                         field.set(object, jsonObject.get(field.getName()));
                     }
