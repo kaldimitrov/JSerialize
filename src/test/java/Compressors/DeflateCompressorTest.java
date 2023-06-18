@@ -15,7 +15,7 @@ class DeflateCompressorTest {
         DeflateCompressor compressor = new DeflateCompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(116, bytes.length);
+        assertEquals(256, bytes.length);
     }
 
     @Test

@@ -15,7 +15,7 @@ public class LZ4CompressorTest {
         LZ4Compressor compressor = new LZ4Compressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(110, bytes.length);
+        assertEquals(279, bytes.length);
     }
 
     @Test

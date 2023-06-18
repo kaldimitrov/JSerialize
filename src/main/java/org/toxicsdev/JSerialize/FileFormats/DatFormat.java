@@ -4,12 +4,14 @@ import lombok.SneakyThrows;
 import org.toxicsdev.JSerialize.Compressors.Compressor;
 import org.toxicsdev.JSerialize.Utils.CompressorUtils;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayOutputStream;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatFormat implements SerializableFormat {
     private static final int COMPRESSOR_NAME_LENGTH = 7;
-    private static final char END_OBJECT_CHAR = '\\';
+    private static final char END_OBJECT_CHAR = 0xFF;
 
     private Compressor compressor;
 

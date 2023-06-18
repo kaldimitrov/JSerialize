@@ -1,9 +1,11 @@
 package TestObjects;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 public class Person implements Serializable {
+    private final Map<Person, Integer> friendsMap = new HashMap<>();
+    private final List<Person> friendsList = new ArrayList<>();
     private String name;
     private int age;
     private String gender;
@@ -45,6 +47,22 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
+    public void addToMap(Person p) {
+        friendsMap.put(p, friendsMap.size());
+    }
+
+    public void addToList(Person p) {
+        friendsList.add(p);
+    }
+
+    public Map<Person, Integer> getMap() {
+        return friendsMap;
+    }
+
+    public List<Person> getList() {
+        return friendsList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +72,6 @@ public class Person implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge(), getGender());
+        return Objects.hash(getName(), getAge(), getGender(), getMap(), getList());
     }
 }

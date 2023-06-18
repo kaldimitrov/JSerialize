@@ -14,7 +14,7 @@ public class Deserializer {
     }
 
     @SneakyThrows
-    List<Object> deserialize(String fileName) {
+    public List<Object> deserialize(String fileName) {
         try {
             return deserializer.deserialize(fileName);
         } catch (Exception e) {
@@ -25,7 +25,7 @@ public class Deserializer {
     }
 
     @SneakyThrows
-    Object deserialize(String fileName, int index) {
+    public Object deserialize(String fileName, int index) {
         try {
             return deserializer.deserialize(fileName, index);
         } catch (Exception e) {

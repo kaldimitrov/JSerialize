@@ -15,7 +15,7 @@ public class B2ZipCompressorTest {
         B2ZipCompressor compressor = new B2ZipCompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(154, bytes.length);
+        assertEquals(309, bytes.length);
     }
 
     @Test

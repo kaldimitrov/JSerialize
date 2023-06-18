@@ -15,7 +15,7 @@ class XZCompressorTest {
         XZCompressor compressor = new XZCompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(168, bytes.length);
+        assertEquals(308, bytes.length);
     }
 
     @Test

@@ -15,7 +15,7 @@ class LZMACompressorTest {
         LZMACompressor compressor = new LZMACompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(128, bytes.length);
+        assertEquals(260, bytes.length);
     }
 
     @Test

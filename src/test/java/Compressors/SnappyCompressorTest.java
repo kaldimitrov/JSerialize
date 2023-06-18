@@ -15,7 +15,7 @@ class SnappyCompressorTest {
         SnappyCompressor compressor = new SnappyCompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(131, bytes.length);
+        assertEquals(306, bytes.length);
     }
 
     @Test

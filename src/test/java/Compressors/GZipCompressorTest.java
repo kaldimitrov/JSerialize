@@ -15,7 +15,7 @@ public class GZipCompressorTest {
         GZipCompressor compressor = new GZipCompressor();
 
         byte[] bytes = compressor.compress(p);
-        assertEquals(128, bytes.length);
+        assertEquals(268, bytes.length);
     }
 
     @Test

@@ -6,13 +6,11 @@ import org.toxicsdev.JSerialize.FileFormats.JsonFormat;
 import org.toxicsdev.JSerialize.FileFormats.SerializableFormat;
 import org.toxicsdev.JSerialize.Utils.CompressorUtils;
 
-import java.io.File;
-
 public class Serializer {
     private Compressor compressor = null;
     private SerializableFormat serializer = new JsonFormat();
     private boolean compress = false;
-    private boolean bestCompression = false;
+    private boolean bestCompression = true;
 
     public void setCompressor(Compressor compressor) {
         this.compressor = compressor;
@@ -25,6 +23,7 @@ public class Serializer {
     public void enableBestCompression(boolean bestCompression) {
         this.bestCompression = bestCompression;
     }
+
     public void setSerializer(SerializableFormat ser) {
         serializer = ser;
     }
