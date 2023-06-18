@@ -9,7 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class SnappyCompressor implements Compressor {
-    public SnappyCompressor() {
+    public String getName() {
+        return "Snappy";
     }
 
     @Override

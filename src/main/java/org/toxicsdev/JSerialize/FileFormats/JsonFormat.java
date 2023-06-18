@@ -104,4 +104,48 @@ public class JsonFormat implements SerializableFormat {
         }
         return objects;
     }
+
+    @SneakyThrows
+    public Object deserialize(String fileName, int index) {
+        File file = new File(fileName);
+        if (!file.exists()) {
+            throw new FileNotFoundException("File not found: " + fileName);
+        }
+        try (FileReader reader = new FileReader(fileName)) {
+            JSONObject mainObject = new JSONObject(new JSONTokener(reader));
+            String key = String.valueOf(index);
+            if (!mainObject.has(key)) {
+                throw new IndexOutOfBoundsException("No object found at index: " + index);
+            }
+            JSONObject jsonObject = mainObject.getJSONObject(key);
+            Class<?> clazz = Class.forName(jsonObject.getString("class"));
+            Object object = clazz.newInstance();
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                field.setAccessible(true);
+                if (!jsonObject.has(field.getName())) {
+                    field.set(object, null);
+                    continue;
+                }
+                if (field.getType().isArray()) {
+                    JSONArray jsonArrayField = jsonObject.getJSONArray(field.getName());
+                    Object array = Array.newInstance(field.getType().getComponentType(), jsonArrayField.length());
+                    for (int i = 0; i < jsonArrayField.length(); i++) {
+                        Array.set(array, i, jsonArrayField.get(i));
+                    }
+                    field.set(object, array);
+                } else if (List.class.isAssignableFrom(field.getType())) {
+                    List<Object> list = new ArrayList<>(jsonObject.getJSONArray(field.getName()).toList());
+                    field.set(object, list);
+                } else if (Map.class.isAssignableFrom(field.getType())) {
+                    Map<String, Object> map = new HashMap<>(jsonObject.getJSONObject(field.getName()).toMap());
+                    field.set(object, map);
+                } else {
+                    field.set(object, jsonObject.get(field.getName()));
+                }
+            }
+            return object;
+        }
+    }
+
 }

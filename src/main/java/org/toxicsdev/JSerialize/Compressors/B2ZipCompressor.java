@@ -9,7 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class B2ZipCompressor implements Compressor {
-    public B2ZipCompressor() {
+
+    public String getName() {
+        return "B2Zip";
     }
 
     @Override

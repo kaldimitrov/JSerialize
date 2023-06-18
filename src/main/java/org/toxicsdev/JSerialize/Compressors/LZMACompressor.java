@@ -9,7 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class LZMACompressor implements Compressor {
-    public LZMACompressor() {
+    public String getName() {
+        return "LZMA";
     }
 
     @Override

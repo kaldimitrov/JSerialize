@@ -10,6 +10,7 @@ public class Person implements Serializable {
     private String gender;
     String[] friends = new String[3];
     Map<String, Integer> friendsMap = new HashMap<>();
+    Map<Integer, Person> objectsMap = new HashMap<>();
 
 
     public Person() {
@@ -60,6 +61,10 @@ public class Person implements Serializable {
         for(int i = 0; i < 3; i++) {
             System.out.println(friends[i]);
         }
+    }
+
+    public void addFriend(Person p) {
+        objectsMap.put(objectsMap.size(), p);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.toxicsdev.JSerialize;
 
 import lombok.SneakyThrows;
+import org.toxicsdev.JSerialize.FileFormats.DatFormat;
 import org.toxicsdev.JSerialize.FileFormats.JsonFormat;
 import org.toxicsdev.JSerialize.FileFormats.YamlFormat;
 import org.toxicsdev.JSerialize.Utils.CompressorUtils;
@@ -11,29 +12,30 @@ public class Main {
     @SneakyThrows
     public static void main(String[] args) {
         Person p = new Person();
-        System.out.println(CompressorUtils.getBestCompressor(p));
+        p.addFriend(new Person());
+        p.addFriend(new Person());
+        p.addFriend(new Person());
+        p.addFriend(new Person());
 
-        JsonFormat json = new JsonFormat();
-        json.serialize(p, "test.json");
-        json.serialize(p, "test.json");
-        json.serialize(p, "test.json");
-        json.serialize(p, "test.json");
-        json.serialize(p, "test.json");
+        Serializer serializer = new Serializer();
+        serializer.enableBestCompression(true);
+        serializer.enableCompress(true);
 
-        List<Object> objects = json.deserialize("test.json");
-        Person p1 = (Person) objects.get(0);
-        p1.printFriends();
+        serializer.serialize(p, "test1.dat");
 
-        YamlFormat yaml = new YamlFormat();
-        yaml.serialize(p, "test.yml");
-        yaml.serialize(p, "test.yml");
-        yaml.serialize(p, "test.yml");
-        yaml.serialize(p, "test.yml");
-        yaml.serialize(p, "test.yml");
+        Deserializer deserializer = new Deserializer();
+        deserializer.setDeserializer(new DatFormat());
+        System.out.println(deserializer.deserialize("test1.dat"));
+        Person p1 = (Person) deserializer.deserialize("test1.dat", 0);
+        System.out.println(p1);
 
-        List<Object> objects1 = yaml.deserialize("test.yml");
-        Person p2 = (Person) objects1.get(0);
-        p2.printFriends();
+        serializer.enableCompress(false);
 
+        serializer.setSerializer(new JsonFormat());
+        serializer.serialize(p, "test.json");
+        serializer.serialize(p, "test.json");
+        serializer.serialize(p, "test.json");
+        serializer.serialize(p, "test.json");
+        serializer.serialize(p, "test.json");
     }
 }

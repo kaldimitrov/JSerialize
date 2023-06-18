@@ -10,7 +10,8 @@ import java.io.IOException;
 
 
 public class DeflateCompressor implements Compressor {
-    public DeflateCompressor() {
+    public String getName() {
+        return "Deflate";
     }
 
     @Override

@@ -9,6 +9,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class XZCompressor implements Compressor {
+
+    public String getName() {
+        return "XZ";
+    }
+
     @Override
     public byte[] compress(Object obj) {
         byte[] serializedBytes = ByteUtils.convertToBytes(obj);

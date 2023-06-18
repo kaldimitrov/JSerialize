@@ -1,8 +1,37 @@
 package org.toxicsdev.JSerialize;
 
-import org.toxicsdev.JSerialize.Compressors.Compressor;
+import lombok.SneakyThrows;
+import org.toxicsdev.JSerialize.FileFormats.JsonFormat;
+import org.toxicsdev.JSerialize.FileFormats.SerializableFormat;
+
+import java.util.List;
 
 public class Deserializer {
-    Compressor compressor = null;
-    boolean compact;
+    private SerializableFormat deserializer = new JsonFormat();
+
+    public void setDeserializer(SerializableFormat deser) {
+        deserializer = deser;
+    }
+
+    @SneakyThrows
+    List<Object> deserialize(String fileName) {
+        try {
+            return deserializer.deserialize(fileName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @SneakyThrows
+    Object deserialize(String fileName, int index) {
+        try {
+            return deserializer.deserialize(fileName, index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

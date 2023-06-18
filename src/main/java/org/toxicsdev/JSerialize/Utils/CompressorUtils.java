@@ -15,7 +15,7 @@ public class CompressorUtils {
         List<Class<?>> classes = PackageUtils.getClassesInPackage(packageName);
 
         for (Class<?> clazz : classes) {
-            if (clazz.getSimpleName().equals(name)) {
+            if (clazz.getSimpleName().equals(name + "Compressor")) {
                 return (Compressor) clazz.cast(clazz.newInstance());
             }
         }

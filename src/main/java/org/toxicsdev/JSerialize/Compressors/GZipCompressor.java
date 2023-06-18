@@ -9,7 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class GZipCompressor implements Compressor {
-    public GZipCompressor() {
+    public String getName() {
+        return "GZip";
     }
 
     @Override
